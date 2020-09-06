@@ -3,8 +3,24 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer, TabActions } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { LoginScreen, HomeScreen, RegistrationScreen, JournalScreen, JournalItemScreen } from "./src/screens";
+import {
+  useFonts as useFontsPoppins,
+  Poppins_400Regular,
+  Poppins_700Bold,
+} from "@expo-google-fonts/poppins";
+import {
+  useFonts as useFontsOpenSans,
+  OpenSans_400Regular,
+  OpenSans_700Bold,
+} from "@expo-google-fonts/open-sans";
+import { Ionicons } from "@expo/vector-icons";
+import {
+  LoginScreen,
+  HomeScreen,
+  RegistrationScreen,
+  JournalScreen,
+  ChartsScreen,
+} from "./src/screens";
 import { decode, encode } from "base-64";
 import { firebase } from "./src/firebase/config";
 if (!global.btoa) {
@@ -20,6 +36,14 @@ const Tab = createBottomTabNavigator();
 export default function App() {
   const [loading, setLoading] = useState(true);
   const [user, setUser] = useState(null);
+  const [fontsLoadedPoppins] = useFontsPoppins({
+    Poppins_400Regular,
+    Poppins_700Bold,
+  });
+  const [fontsLoadedOpenSans] = useFontsOpenSans({
+    OpenSans_400Regular,
+    OpenSans_700Bold,
+  });
 
   useEffect(() => {
     const usersRef = firebase.firestore().collection("users");
@@ -43,24 +67,46 @@ export default function App() {
   }, []);
 
   const tabs = (
-    <Tab.Navigator initialRouteName="Journal">
-      <Tab.Screen name="Home">
-        {(props) => <HomeScreen {...props} extraData={user} />}
-      </Tab.Screen>
-      <Tab.Screen name="Journal" component={JournalScreen} />
-      <Tab.Screen name="JournalItem" component={JournalItemScreen} />
+    <Tab.Navigator initialRouteName="Home">
+      <Tab.Screen
+        name="Home"
+        component={ChartsScreen}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Ionicons name="md-home" color={color} size={size} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Journal"
+        component={JournalScreen}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Ionicons name="ios-book" color={color} size={size} />;
+          },
+        }}
+      />
+      <Tab.Screen
+        name="Settings"
+        component={HomeScreen}
+        options={{
+          tabBarIcon: ({ focused, color, size }) => {
+            return <Ionicons name="md-settings" color={color} size={size} />;
+          },
+        }}
+      />
     </Tab.Navigator>
   );
 
-  if (loading) {
+  if (loading || !fontsLoadedPoppins || !fontsLoadedOpenSans) {
     return <></>;
   }
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Home">
-        {/* <Stack.Screen name="Home" children={() => (user ? tabs : null)} /> */}
-        <Stack.Screen name="Home" children={() => tabs} />
+      <Stack.Navigator initialRouteName="Login">
+        <Stack.Screen name="Dr. Companion" children={() => (user ? tabs : null)} />
+        {/* <Stack.Screen name="Dr. Companion" children={() => tabs} /> */}
         <Stack.Screen name="Login" component={LoginScreen} />
         <Stack.Screen name="Registration" component={RegistrationScreen} />
       </Stack.Navigator>

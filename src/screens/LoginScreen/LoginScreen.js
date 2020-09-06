@@ -29,7 +29,7 @@ export default function LoginScreen({navigation}) {
                           return;
                       }
                       const user = firestoreDocument.data()
-                      navigation.navigate('Home', {user: user})
+                      navigation.navigate('Dr. Companion', {user: user})
                   })
                   .catch(error => {
                       alert(error)
@@ -48,7 +48,7 @@ export default function LoginScreen({navigation}) {
                 keyboardShouldPersistTaps="always">
                 <Image
                     style={styles.logo}
-                    source={require('../../../assets/firebase.png')}
+                    source={require('../../../assets/logo.png')}
                 />
                 <TextInput
                     style={styles.input}

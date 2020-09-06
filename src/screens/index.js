@@ -6,4 +6,4 @@ export { default as RegistrationScreen } from './RegistrationScreen/Registration
 
 export { default as JournalScreen } from './JournalScreen/JournalScreen'
 
-export { default as JournalItemScreen } from './JournalItemScreen/JournalItemScreen'
+export { default as ChartsScreen } from './ChartsScreen/ChartsScreen'

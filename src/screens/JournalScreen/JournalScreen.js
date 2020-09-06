@@ -1,6 +1,8 @@
 import React from "react";
 import { View, StyleSheet, Text, TouchableOpacity } from "react-native";
 import { Agenda } from "react-native-calendars";
+import HeadingText from "../../components/HeadingText";
+import BodyText from "../../components/BodyText";
 
 const styles = StyleSheet.create({
   item: {
@@ -44,29 +46,36 @@ const styles = StyleSheet.create({
 const JournalItem = (item) => {
   return (
     <View style={styles.item}>
-      <Text style={styles.itemSubtitle}>Symptoms</Text>
+      <HeadingText style={styles.itemSubtitle}>Symptoms</HeadingText>
       <View style={styles.journalItemList}>
         {item.symptoms.map((s) => (
-          <Text key={s} style={styles.journalItemListItem}>
+          <BodyText key={s} style={styles.journalItemListItem}>
             {s}
-          </Text>
+          </BodyText>
         ))}
       </View>
-      <Text style={{ ...styles.itemSubtitle, backgroundColor: "#5ad673" }}>
+      <HeadingText
+        style={{ ...styles.itemSubtitle, backgroundColor: "#5ad673" }}
+      >
         Diary
-      </Text>
+      </HeadingText>
       <View style={styles.journalItemList}>
-        {item.symptoms.map((s) => (
-          <Text key={s} style={styles.journalItemListItem}>
-            {s}
-          </Text>
-        ))}
+        <BodyText style={styles.journalItemListItem}>
+          I’m a little tired from a long day, and I have some back pain. It was
+          nice to talk to you too! I’m excited to see my progress over the next
+          couple months!
+        </BodyText>
       </View>
-      <Text style={{ ...styles.itemSubtitle, backgroundColor: "#fa98ed" }}>
+      <HeadingText
+        style={{ ...styles.itemSubtitle, backgroundColor: "#fa98ed" }}
+      >
         Mood
-      </Text>
+      </HeadingText>
       <View style={styles.journalItemList}>
-        <Text style={styles.journalItemListItem}>GOOD</Text>
+        <BodyText style={styles.journalItemListItem}>
+          Alright - I woke up with some pain but I’m happy to go on a walk with
+          my dog in a couple minutes.
+        </BodyText>
       </View>
     </View>
   );
@@ -86,7 +95,13 @@ export default function JournalScreen(props) {
     items[`2020-09-${String(i).padStart(2, "0")}`] = [];
   }
   items["2020-09-04"] = [
-    { symptoms: ["balance problems", "shuffling", "nausea"] },
+    {
+      symptoms: [
+        "Tremors",
+        "Difficulty falling/staying asleep",
+        "Anxious/irritable",
+      ],
+    },
   ];
   return (
     <Agenda

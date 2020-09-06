@@ -1,31 +1,28 @@
 import { StyleSheet } from 'react-native';
+import { COLORS } from '../../colors';
 
 export default StyleSheet.create({
-    container: {
-        flex: 1,
-        alignItems: 'center'
-    },
-    formContainer: {
-        flexDirection: 'row',
-        height: 80,
-        marginTop: 40,
-        marginBottom: 20,
-        flex: 1,
-        paddingTop: 10,
-        paddingBottom: 10,
-        paddingLeft: 30,
-        paddingRight: 30,
-        justifyContent: 'center',
-        alignItems: 'center'
-    },
-    input: {
-        height: 48,
+    label: {
+        backgroundColor: "lightgrey",
         borderRadius: 5,
-        overflow: 'hidden',
-        backgroundColor: 'white',
-        paddingLeft: 16,
-        flex: 1,
-        marginRight: 5
+        padding: 8,
+        paddingLeft: 15,
+        paddingRight: 15,
+        fontSize: 12,
+        marginRight: 8,
+        marginTop: 5,
+        marginBottom: 5
+    },
+    editButton: {
+        backgroundColor: COLORS.blue,
+        marginTop: 24,
+        marginBottom: 40,
+        paddingTop: 12,
+        paddingBottom: 12,
+        paddingLeft: 24,
+        paddingRight: 24,
+        width: 100,
+        borderRadius: 24,
     },
     button: {
         height: 47,
@@ -39,32 +36,14 @@ export default StyleSheet.create({
         color: 'white',
         fontSize: 16
     },
-    listContainer: {
-        marginTop: 20,
-        padding: 20,
+    input: {
+        height: 48,
+        borderRadius: 5,
+        overflow: 'hidden',
+        backgroundColor: 'white',
+        paddingLeft: 16,
+        flex: 1,
+        marginRight: 5,
+        marginBottom: 12
     },
-    entityContainer: {
-        marginTop: 16,
-        borderBottomColor: '#cccccc',
-        borderBottomWidth: 1,
-        paddingBottom: 16
-    },
-    entityText: {
-        fontSize: 20,
-        color: '#333333'
-    },
-    footerView: {
-      flex: 1,
-      alignItems: "center",
-      marginTop: 20
-    },
-    footerText: {
-      fontSize: 16,
-      color: '#2e2e2d'
-    },
-    footerLink: {
-      color: "#788eec",
-      fontWeight: "bold",
-      fontSize: 16
-    }
 })
