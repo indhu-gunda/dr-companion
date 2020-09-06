@@ -77,7 +77,7 @@ export default function HomeScreen(props) {
             <View style={styles.formContainer}>
                 <TextInput
                     style={styles.input}
-                    placeholder='Add new entity'
+                    placeholder='Add new entry'
                     placeholderTextColor="#aaaaaa"
                     onChangeText={(text) => setEntityText(text)}
                     value={entityText}
